@@ -1,3 +1,8 @@
+/* how do I apply this before any other styling? */
+.pixelart {
+    image-rendering: pixelated;
+}
+
 .status-HUD{
     align-content: center;
 }
@@ -10,23 +15,38 @@
 }
 
 body{
-    background-color: aquamarine;
-    background-image: "https://i.imgur.com/FuRaEpO.png";
+    background-color: tan;
+}
+
+.background{
+    background-image: url(/images/background.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+/* animation styling */
+:root {
+    --pixel-size: 6;
 }
 
 .character{
-    width: 50px;
-    height: 37px;
-    background: wheat;
+    width: calc(50px * var(--pixel-size));
+    /* height: calc(37px * var(--pixel-size)); */
+    /* background: wheat; */
     overflow: hidden;
+    position: relative;
+    margin: 4em auto;
+
 }
 
 .character-spritesheet {
-    animation: moveSpritesheet 1s steps(7)
+    animation: moveSpritesheet 1s steps(4);
+    animation-iteration-count: infinite;
+    width: calc(200px * var(--pixel-size));
 }
 
-
-
+/* animate */
 @keyframes moveSpritesheet {
     from {
         transform: translate3d(0px,0,0)
