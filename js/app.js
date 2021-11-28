@@ -41,8 +41,9 @@ class characterObj{
 
 
 const mainCharacter = new characterObj(100, 100, 50);
+
 mainCharacter.staminaChange(-1);
-console.log(mainCharacter.stamina);
+// console.log(mainCharacter.stamina);
 
 // Function to update progress bars
 function barUpdate(barId, stat) {
@@ -64,11 +65,12 @@ function barUpdate(barId, stat) {
     // }
 }
 
-  function buttonClick(e){
+
+function buttonClick(e){
     let userInput = e.target.id;
     console.log(userInput);
     let message = "";
-    
+
     if (userInput = "attack"){
         ussAssembly.attack(alienFleet[0]);
         message = `The alien ship has ${alienFleet[0].hull} hull points left`;
@@ -82,13 +84,13 @@ function barUpdate(barId, stat) {
         }
     } else if(userInput = "retreat"){
         message = "why you running";
-    }
+}
 
 
-    document.querySelector('#results').innerText = message;
-    console.log(message);
+document.querySelector('#results').innerText = message;
+console.log(message);
 
-  }
+}
 
 //   document.getElementById("checkHP").addEventListener("click", buttonClick);
 //   document.getElementById("attack").addEventListener("click", buttonClick);

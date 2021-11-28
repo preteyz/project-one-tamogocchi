@@ -5,17 +5,28 @@
 
 .status-HUD{
     align-content: center;
+    padding: 2rem 5rem;
+    color: white;
+    border: solid;
 }
 
 .progress-bar{
     height: 24px;
-    width: 1%;
+    width: 100%;
+    border: solid;
+}
 
-
+h3{
+    text-align: center;
 }
 
 body{
     background-color: tan;
+}
+
+/* animation styling */
+:root {
+    --pixel-size: 5;
 }
 
 .background{
@@ -23,11 +34,8 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-}
-
-/* animation styling */
-:root {
-    --pixel-size: 6;
+    height: 1000px;
+    position: relative;
 }
 
 .character{
@@ -35,15 +43,20 @@ body{
     /* height: calc(37px * var(--pixel-size)); */
     /* background: wheat; */
     overflow: hidden;
-    position: relative;
     margin: 4em auto;
-
+    height: 100%;
 }
 
-.character-spritesheet {
+.character-idle {
     animation: moveSpritesheet 1s steps(4);
     animation-iteration-count: infinite;
     width: calc(200px * var(--pixel-size));
+}
+
+.character-run {
+    animation: moveSpritesheet 1s steps(6);
+    animation-iteration-count: infinite;
+    width: calc(300px * var(--pixel-size));
 }
 
 /* animate */
@@ -54,4 +67,16 @@ body{
     to {
         transform: translate3d(-100%,0,0)
     }
+}
+
+/* .character-level{
+    border: solid;
+    color: white;
+} */
+
+h1{
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin: 1rem;
 }
