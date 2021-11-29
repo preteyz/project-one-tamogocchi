@@ -2,6 +2,9 @@
 *    Idea for changing difficulty of the game
 *    NOTE..............................
 *
+* MISSING TIME COMPONENT
+* HP AND STAMINA CAN GO BELOW 0 AND OVER 100
+* NO ENDGAME COMPONENT
 * Battle component of the game can be implemented in future version
 */
 
@@ -16,15 +19,8 @@
 //     }
 // }
 
-// Global Variables
-const attackBtn = document.getElementById("attack");
-const advanceBtn = document.getElementById("advance");
-const mainCharacter = new characterObj(100, 100, 50);
-let staminaDecrement = 1;
-
-// Create main character object that is affected by stamina decay over time
 class characterObj{
-
+    exhausted = false;
     isResting = false;
     isSheathed = true;
     level = 1;
@@ -41,13 +37,16 @@ class characterObj{
         target.hp -= this.attack
     }
 
-    takeDamage(damage){
-        this.hp -= damage;
-
+    hpChange(amt){
+        if(amt > 0 && this.hp > 100){
+            this.hp += amt;
+        } else {
+            this.hp -= amt;
+        }
     }
 
-    staminaChange(delta){
-        this.stamina += delta;
+    staminaChange(amt){
+        this.stamina += amt;
         console.log(this.stamina);
     }
 
@@ -56,21 +55,28 @@ class characterObj{
         if (this.exp > this.lvlUp){
             this.level += 1;
             this.lvlUp += 20;
-
+            this.exp = 0;
         }
-        
     }
-
 }
 
 
+// Global Variables
+const mainCharacter = new characterObj(100, 100, 50);
+const attackBtn = document.getElementById("attack");
+const advanceBtn = document.getElementById("advance");
+let remainTime = 120;
+let staminaDecrement = 1;
 
 
-
-// Function to update progress bars
-function barUpdate(barId, stat) {
-    var elem = document.getElementById(barId);   
-    var width = stat;
+// Function to update html page/bars
+function elemUpdate(elemId, stat) {
+    let elem = document.getElementById(elemId);
+    if(elemId === "remain"){
+        elem.innerHTML = stat;
+    } else{
+        elem.setAttribute("value", stat);
+    }
     // create a function to increment by changes in each bar by 1%;
     // var id = setInterval(frame, 1);
     // function frame() {
@@ -83,6 +89,14 @@ function barUpdate(barId, stat) {
     // }
 }
 
+function pageUpdate() {
+    elemUpdate("remain", remainTime);
+    elemUpdate("hp-bar", mainCharacter.hp);
+    elemUpdate("stamina-bar", mainCharacter.stamina);
+    elemUpdate("exp-bar", mainCharacter.exp);
+
+}
+    
 
 function clearBox(elementID){
     document.getElementById(elementID).innerHTML = "";
@@ -96,22 +110,35 @@ function appendImage(imageId, imageClass, imageSource) {
 }
 
 function playerAdvance(){
+    mainCharacter.staminaChange(-25);
+    mainCharacter.hpChange(-5);
+    mainCharacter.gainExp(20);
     clearBox("sprites");
     appendImage("main-char", "pixelart character-run", "images/main/main-run.png");
 }
 
 function playerAttack(){
+    mainCharacter.staminaChange(-10);
+    mainCharacter.hpChange(-25);
+    mainCharacter.gainExp(40);
     clearBox("sprites");
     appendImage("main-char", "pixelart character-atk1", "images/Main/main-atk1.png");
 }
 
 function playerRest(){
+    mainCharacter.staminaChange(25);
+    mainCharacter.hpChange(10);
+    remainTime -= 10;
+    console.log(remainTime);
+    
     clearBox("sprites");
     appendImage("main-char", "pixelart character-idle", "images/Main/main-rest.png");
 }
 
 function playerSword(){
-    clearBox("sprites");
+    clearBox("sprites");    
+    mainCharacter.staminaChange(-2);
+
     if(mainCharacter.isSheathed){
         mainCharacter.isSheathed = false;
         advanceBtn.className = "nes-btn is-disabled";
@@ -137,6 +164,7 @@ function playGame(e){
     } else if(userInput === "sword"){
         playerSword();
     }
+    pageUpdate();
 
 }
 

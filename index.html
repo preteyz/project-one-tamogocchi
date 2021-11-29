@@ -13,8 +13,6 @@
 <body>
     <div class="game-area">
         
-        
-
         <!-- Animated Sprites -->
         <div class="background">
 
@@ -22,10 +20,10 @@
             <div class="status-HUD">
                 <!-- Container for all bars -->
                 <div class="progress-bars">
-                    <h3>Time Remaining: <span>999</span> sec</h3> 
-                    <progress class="nes-progress is-success" id="hp" value="100" max="100"></progress>
+                    <h3>Time Remaining: <span id="remain">999</span> sec</h3> 
+                    <progress class="nes-progress is-success" id="hp-bar" value="100" max="100"></progress>
                     <h3>HP: <span>100%</span></h3>
-                    <progress class="nes-progress is-warning" id="stamina" value="100" max="100"></progress>
+                    <progress class="nes-progress is-warning" id="stamina-bar" value="100" max="100"></progress>
                     <h3>Stamina: <span>100%</span></h3>
                 </div>
             </div>
@@ -51,7 +49,7 @@
             <!-- Level and exp bar -->
             <div class="level-HUD">
                 <h3>Lvl: 1</h3>
-                <progress id="exp-bar" class="nes-progress" value="90" max="100"></progress>
+                <progress id="exp-bar" class="nes-progress" value="0" max="100"></progress>
                 <h3>Exp: <span>0%</span></h3> 
             </div>
             
