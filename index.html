@@ -32,18 +32,20 @@
 
             
             <!-- Sprite animations -->
-            <div class="character">
-                <img class="pixelart character-idle"  src="images/Main/main-idle.png" alt="main-character">
-                <!-- <img class="pixelart character-idle"  src="images/Main/main-unsheath.png" alt="main-character"> -->
-                <!-- <img class="pixelart character-run"  src="images/Main/main-run.png" alt="main-character"> -->
+            <div class="character" id="sprites">
+                <img id="main-idle" class="pixelart character-idle"  src="images/Main/main-idle.png" alt="main-character">
+                <!-- <img id="main-idle-unsheath" class="pixelart character-idle"  src="images/Main/main-unsheath.png" alt="main-character">
+                <img id="main-run" class="pixelart character-run"  src="images/Main/main-run.png" alt="main-character">
+                <img id="main-atk1" class="pixelart character-atk1"  src="images/Main/main-atk1.png" alt="main-character"> -->
             </div>
 
             <!-- Player buttons -->
-            <div class="play-buttons">
-                <button class="w3-button w3-green" onclick="move()">Advance</button> 
-                <button class="w3-button w3-green" onclick="move()">Attack</button> 
-                <button class="w3-button w3-green" onclick="move()">Rest</button>
-                <button class="w3-button w3-green" onclick="move()">Sword</button> 
+
+            <div class="play-buttons" id="button-container">
+                <button id="advance" type="button" class="nes-btn">.Advance.</button>
+                <button id="attack" type="button" class="nes-btn is-disabled">.Attack.</button>
+                <button id="rest" type="button" class="nes-btn is-success">. Rest .</button>
+                <button id="sword" type="button" class="nes-btn is-primary">. Sword .</button>
             </div>
             
 

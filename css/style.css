@@ -21,9 +21,17 @@ h3{
     font-size: 15px;
 }
 
-body{
-    background-color: tan;
+html, body {
+    margin: 0; 
+    height: 100%; 
+    overflow: hidden;
+    max-height: 1000px;
 }
+
+.nes-progress{
+    height: 30px;
+}
+
 
 /* animation styling */
 :root {
@@ -41,13 +49,10 @@ body{
 
 .character{
     width: calc(50px * var(--pixel-size));
-    /* height: calc(37px * var(--pixel-size)); */
-    /* background: wheat; */
     overflow: hidden;
     margin: 4em auto;
-    /* height: 100%; */
     position: relative;
-    top: 10px;
+    top: 40px;
     right: 20%;
 }
 
@@ -59,8 +64,14 @@ body{
 
 .character-run {
     animation: moveSpritesheet 1s steps(6);
-    animation-iteration-count: infinite;
+    animation-iteration-count: 5;
     width: calc(300px * var(--pixel-size));
+}
+
+.character-atk1 {
+    animation: moveSpritesheet 1s steps(7);
+    animation-iteration-count: 1;
+    width: calc(350px * var(--pixel-size));
 }
 
 /* animate */
@@ -73,10 +84,13 @@ body{
     }
 }
 
-/* .character-level{
-    border: solid;
-    color: white;
-} */
+.play-buttons{
+    display: flex;
+    justify-content: space-evenly;
+    /* position: absolute; */
+    /* width: 50%; */
+}
+
 
 h1{
     color: white;
