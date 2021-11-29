@@ -49,10 +49,6 @@ mainCharacter.staminaChange(-1);
 function barUpdate(barId, stat) {
     var elem = document.getElementById(barId);   
     var width = stat;
-    elem.style.width = stat + '%';
-
-    
-
     // create a function to increment by changes in each bar by 1%;
     // var id = setInterval(frame, 1);
     // function frame() {
@@ -92,5 +88,5 @@ console.log(message);
 
 }
 
-//   document.getElementById("checkHP").addEventListener("click", buttonClick);
-//   document.getElementById("attack").addEventListener("click", buttonClick);
+  document.getElementById("checkHP").addEventListener("click", buttonClick);
+  document.getElementById("attack").addEventListener("click", buttonClick);

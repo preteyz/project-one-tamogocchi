@@ -22,29 +22,31 @@
             <div class="status-HUD">
                 <!-- Container for all bars -->
                 <div class="progress-bars">
-                    <progress class="nes-progress" id="journey" value="90" max="100"></progress>
-                    <h3>Time Remaining</h3> <span></span>
-                    <progress class="nes-progress is-success" id="hp" value="50" max="100"></progress>
+                    <h3>Time Remaining: <span>999</span> sec</h3> 
+                    <progress class="nes-progress is-success" id="hp" value="100" max="100"></progress>
                     <h3>HP: <span>100%</span></h3>
-                    <progress class="nes-progress is-warning" id="stamina" value="30" max="100"></progress>
+                    <progress class="nes-progress is-warning" id="stamina" value="100" max="100"></progress>
                     <h3>Stamina: <span>100%</span></h3>
                 </div>
             </div>
 
-
-
+            
+            <!-- Sprite animations -->
             <div class="character">
                 <img class="pixelart character-idle"  src="images/Main/main-idle.png" alt="main-character">
-                <img class="pixelart character-idle"  src="images/Main/main-unsheath.png" alt="main-character">
-                <img class="pixelart character-run"  src="images/Main/main-run.png" alt="main-character">
+                <!-- <img class="pixelart character-idle"  src="images/Main/main-unsheath.png" alt="main-character"> -->
+                <!-- <img class="pixelart character-run"  src="images/Main/main-run.png" alt="main-character"> -->
             </div>
 
             <!-- Player buttons -->
             <div class="play-buttons">
                 <button class="w3-button w3-green" onclick="move()">Advance</button> 
                 <button class="w3-button w3-green" onclick="move()">Attack</button> 
-                <button class="w3-button w3-green" onclick="move()">Rest</button> 
+                <button class="w3-button w3-green" onclick="move()">Rest</button>
+                <button class="w3-button w3-green" onclick="move()">Sword</button> 
             </div>
+            
+
         </div>
 
 
