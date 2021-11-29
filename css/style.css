@@ -6,7 +6,7 @@
 .status-HUD{
     align-content: center;
     padding: 2rem 5rem;
-    color: white;
+    color: black;
     /* border: solid; */
 }
 
@@ -30,6 +30,19 @@ html, body {
 
 .nes-progress{
     height: 30px;
+}
+
+
+.level-HUD{
+    align-content: center;
+    padding: 30px 25rem;
+    color: white;
+    /* border: solid; */
+}
+
+
+#exp-bar{
+    height: 15px;
 }
 
 

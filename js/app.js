@@ -1,8 +1,8 @@
 /*   NOTE..............................
 *    Idea for changing difficulty of the game
 *    NOTE..............................
-
-disable attack button until sword is unsheathed
+*
+* Battle component of the game can be implemented in future version
 */
 
 // enemyConstructor(difficulty){
@@ -16,11 +16,20 @@ disable attack button until sword is unsheathed
 //     }
 // }
 
+// Global Variables
+const attackBtn = document.getElementById("attack");
+const advanceBtn = document.getElementById("advance");
+const mainCharacter = new characterObj(100, 100, 50);
+let staminaDecrement = 1;
+
 // Create main character object that is affected by stamina decay over time
 class characterObj{
 
     isResting = false;
     isSheathed = true;
+    level = 1;
+    lvlUp = 100;
+    exp = 0;
 
     constructor(hp, stamina, attack){
         this.hp = hp;
@@ -42,14 +51,21 @@ class characterObj{
         console.log(this.stamina);
     }
 
+    gainExp(amt){
+        this.exp += amt;
+        if (this.exp > this.lvlUp){
+            this.level += 1;
+            this.lvlUp += 20;
+
+        }
+        
+    }
+
 }
 
 
 
-const mainCharacter = new characterObj(100, 100, 50);
 
-
-// console.log(mainCharacter.stamina);
 
 // Function to update progress bars
 function barUpdate(barId, stat) {
@@ -79,45 +95,47 @@ function appendImage(imageId, imageClass, imageSource) {
 
 }
 
-function buttonClick(e){
+function playerAdvance(){
+    clearBox("sprites");
+    appendImage("main-char", "pixelart character-run", "images/main/main-run.png");
+}
+
+function playerAttack(){
+    clearBox("sprites");
+    appendImage("main-char", "pixelart character-atk1", "images/Main/main-atk1.png");
+}
+
+function playerRest(){
+    clearBox("sprites");
+    appendImage("main-char", "pixelart character-idle", "images/Main/main-rest.png");
+}
+
+function playerSword(){
+    clearBox("sprites");
+    if(mainCharacter.isSheathed){
+        mainCharacter.isSheathed = false;
+        advanceBtn.className = "nes-btn is-disabled";
+        attackBtn.className = "nes-btn is-error";
+        appendImage("main-char", "pixelart character-idle", "images/main/main-unsheath.png");
+    } else{
+        mainCharacter.isSheathed = true;
+        attackBtn.className = "nes-btn is-disabled";
+        advanceBtn.className = "nes-btn";
+        appendImage("main-char", "pixelart character-idle", "images/main/main-idle.png");
+    }
+}
+
+function playGame(e){
     let userInput = e.target.id;
-    const attackBtn = document.getElementById("attack");
-    const advanceBtn = document.getElementById("advance");
 
-
-    let message = "";
-
-    console.log(userInput);
-
-    /*
-    <div class="character">
-    <img id="main-idle" class="pixelart character-idle"  src="images/Main/main-idle.png" alt="main-character">
-    <img id="main-idle-unsheath" class="pixelart character-idle"  src="images/Main/main-unsheath.png" alt="main-character">
-    <img id="main-run" class="pixelart character-run"  src="images/Main/main-run.png" alt="main-character">
-    <img id="main-atk1" class="pixelart character-atk1"  src="images/Main/main-atk1.png" alt="main-character">
-    */
-    if (userInput === "advance"){
-        clearBox("sprites");
-        appendImage("main-char", "pixelart character-run", "images/main/main-run.png");
-    } else if(userInput === "attack"){
-        clearBox("sprites");
-        appendImage("main-char", "pixelart character-atk1", "images/Main/main-atk1.png");
+    if (userInput === "advance" && advanceBtn.className !== "nes-btn is-disabled"){
+        playerAdvance();
+    } else if(userInput === "attack" && attackBtn.className !== "nes-btn is-disabled"){
+        playerAttack();
     } else if(userInput === "rest"){
-        clearBox("sprites");
-        appendImage("main-char", "pixelart character-run", "images/Main/main-rest.png");
+        playerRest();
     } else if(userInput === "sword"){
-        clearBox("sprites");
-        if(mainCharacter.isSheathed){
-            mainCharacter.isSheathed = false;
-            advanceBtn.className = "nes-btn is-disabled";
-            attackBtn.className = "nes-btn is-error";
-            appendImage("main-char", "pixelart character-idle", "images/main/main-unsheath.png");
-        } else{
-            mainCharacter.isSheathed = true;
-            attackBtn.className = "nes-btn is-disabled";
-            advanceBtn.className = "nes-btn";
-            appendImage("main-char", "pixelart character-idle", "images/main/main-idle.png");
-        }
+        playerSword();
     }
 
 }
@@ -126,7 +144,7 @@ function buttonClick(e){
 
 
 
-  document.getElementById("advance").addEventListener("click", buttonClick);
-  document.getElementById("attack").addEventListener("click", buttonClick);
-  document.getElementById("rest").addEventListener("click", buttonClick);
-  document.getElementById("sword").addEventListener("click", buttonClick);
+  document.getElementById("advance").addEventListener("click", playGame);
+  document.getElementById("attack").addEventListener("click", playGame);
+  document.getElementById("rest").addEventListener("click", playGame);
+  document.getElementById("sword").addEventListener("click", playGame);
