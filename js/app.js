@@ -6,6 +6,8 @@
 * HP AND STAMINA CAN GO BELOW 0 AND OVER 100
 * NO ENDGAME COMPONENT
 * Battle component of the game can be implemented in future version
+* Add name
+*
 */
 
 // enemyConstructor(difficulty){
@@ -29,7 +31,9 @@ class characterObj{
 
     constructor(hp, stamina, attack){
         this.hp = hp;
+        this.maxHp = hp;
         this.stamina = stamina;
+        this.maxStamina = stamina;
         this.attack = attack;
     }
 
@@ -38,7 +42,7 @@ class characterObj{
     }
 
     hpChange(amt){
-        if(amt > 0 && this.hp > 100){
+        if(amt > 0 && this.hp < 100){
             this.hp += amt;
         } else {
             this.hp -= amt;
@@ -54,7 +58,7 @@ class characterObj{
         this.exp += amt;
         if (this.exp > this.lvlUp){
             this.level += 1;
-            this.lvlUp += 20;
+            // this.lvlUp += 20;
             this.exp = 0;
         }
     }
@@ -65,6 +69,8 @@ class characterObj{
 const mainCharacter = new characterObj(100, 100, 50);
 const attackBtn = document.getElementById("attack");
 const advanceBtn = document.getElementById("advance");
+const charName = prompt("Player name: ");
+document.getElementById("player-name").innerHTML = charName;
 let remainTime = 120;
 let staminaDecrement = 1;
 
@@ -94,7 +100,10 @@ function pageUpdate() {
     elemUpdate("hp-bar", mainCharacter.hp);
     elemUpdate("stamina-bar", mainCharacter.stamina);
     elemUpdate("exp-bar", mainCharacter.exp);
-
+    document.getElementById("HP-percent").innerHTML = `${mainCharacter.hp}%`;
+    document.getElementById("stamina-percent").innerHTML = `${mainCharacter.stamina}%`;
+    document.getElementById("stamina-percent").innerHTML = `${(mainCharacter.exp)}%`;
+    document.getElementById("player-level").innerHTML = `${(mainCharacter.level)}%`;
 }
     
 
@@ -172,7 +181,7 @@ function playGame(e){
 
 
 
-  document.getElementById("advance").addEventListener("click", playGame);
-  document.getElementById("attack").addEventListener("click", playGame);
-  document.getElementById("rest").addEventListener("click", playGame);
-  document.getElementById("sword").addEventListener("click", playGame);
+document.getElementById("advance").addEventListener("click", playGame);
+document.getElementById("attack").addEventListener("click", playGame);
+document.getElementById("rest").addEventListener("click", playGame);
+document.getElementById("sword").addEventListener("click", playGame);
