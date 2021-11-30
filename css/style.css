@@ -87,6 +87,12 @@ html, body {
     width: calc(350px * var(--pixel-size));
 }
 
+.character-dead {
+    animation: moveSpritesheet 1s steps(7);
+    animation-iteration-count: 1;
+    width: calc(350px * var(--pixel-size));
+}
+
 /* animate */
 @keyframes moveSpritesheet {
     from {

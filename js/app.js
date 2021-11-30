@@ -187,9 +187,28 @@ function playGame(e){
 
 }
 
+let interval = "";
+
+function startIntervals(){
+    interval = setInterval(function(){ 
+        let count = 0;
+        remainTime -= 1;
+        mainCharacter.hp -= 1;
+        mainCharacter.stamina -= 1;
+        console.log(remainTime);
+        count += 1;
+        pageUpdate();
+        if(remainTime <= 0 || mainCharacter.hp <= 0 || mainCharacter.stamina <= 0){
+            clearInterval(interval);
+            // document.getElementById("play").setAttribute("display", "none");
+        }
+    ; }, 1000);
+}
 
 
 
+
+startIntervals();
 
 document.getElementById("advance").addEventListener("click", playGame);
 document.getElementById("attack").addEventListener("click", playGame);
