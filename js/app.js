@@ -2,12 +2,9 @@
 *    Idea for changing difficulty of the game
 *    NOTE..............................
 *
-* MISSING TIME COMPONENTS....
-* HP bar is broken
+* MISSING TIME COMPONENT
 * HP AND STAMINA CAN GO BELOW 0 AND OVER 100
 * NO ENDGAME COMPONENT
-* Update level number
-*
 * Battle component of the game can be implemented in future version
 */
 
@@ -30,10 +27,8 @@ class characterObj{
     lvlUp = 100;
     exp = 0;
 
-    constructor(maxHP, stamina, attack){
-        this.hp = maxHP;
-        this.maxHP = maxHP;
-        this.maxStam = stamina;
+    constructor(hp, stamina, attack){
+        this.hp = hp;
         this.stamina = stamina;
         this.attack = attack;
     }
@@ -43,28 +38,16 @@ class characterObj{
     }
 
     hpChange(amt){
-        if(amt > 0 && this.hp < this.maxHP){
+        if(amt > 0 && this.hp > 100){
             this.hp += amt;
-        } else if(amt > 0 && this.hp > this.maxHP){
-            this.hp = maxHP;
-        } else if(amt < 0 && this.hp > 0){
-            this.hp -= amt;
         } else {
-            this.hp = 0;
+            this.hp -= amt;
         }
-
     }
 
     staminaChange(amt){
-        if(amt > 0 && this.stamina < this.maxStam){
-            this.stamina += amt;
-        } else if(amt > 0 && this.stamina > this.maxStam){
-            this.stamina = maxStam;
-        } else if(amt < 0 && this.stamina > 0){
-            this.stamina -= amt;
-        } else {
-            this.stamina = 0;
-        }
+        this.stamina += amt;
+        console.log(this.stamina);
     }
 
     gainExp(amt){
@@ -108,8 +91,6 @@ function elemUpdate(elemId, stat) {
 
 function pageUpdate() {
     elemUpdate("remain", remainTime);
-    // create update for level number at the bottom of page
-    // elemUpdate("")
     elemUpdate("hp-bar", mainCharacter.hp);
     elemUpdate("stamina-bar", mainCharacter.stamina);
     elemUpdate("exp-bar", mainCharacter.exp);
