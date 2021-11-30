@@ -42,16 +42,23 @@ class characterObj{
     }
 
     hpChange(amt){
-        if(amt > 0 && this.hp < 100){
+        if(amt < this.maxHp - this.hp){
             this.hp += amt;
-        } else {
+        } else if(amt < 0){
             this.hp -= amt;
+        } else {
+            this.hp += this.maxHp-this.hp;
         }
     }
 
     staminaChange(amt){
-        this.stamina += amt;
-        console.log(this.stamina);
+        if(amt < this.maxStamina - this.stamina){
+            this.stamina += amt;
+        } else if(amt < 0){
+            this.stamina -= amt;
+        } else {
+            this.stamina += this.maxStamina-this.stamina;
+        }
     }
 
     gainExp(amt){
@@ -59,6 +66,7 @@ class characterObj{
         if (this.exp > this.lvlUp){
             this.level += 1;
             // this.lvlUp += 20;
+            remainTime += 30;
             this.exp = 0;
         }
     }
@@ -102,8 +110,8 @@ function pageUpdate() {
     elemUpdate("exp-bar", mainCharacter.exp);
     document.getElementById("HP-percent").innerHTML = `${mainCharacter.hp}%`;
     document.getElementById("stamina-percent").innerHTML = `${mainCharacter.stamina}%`;
-    document.getElementById("stamina-percent").innerHTML = `${(mainCharacter.exp)}%`;
-    document.getElementById("player-level").innerHTML = `${(mainCharacter.level)}%`;
+    document.getElementById("lvl-percent").innerHTML = `${(mainCharacter.exp)}%`;
+    document.getElementById("player-level").innerHTML = `Level: ${(mainCharacter.level)}`;
 }
     
 
@@ -129,14 +137,14 @@ function playerAdvance(){
 function playerAttack(){
     mainCharacter.staminaChange(-10);
     mainCharacter.hpChange(-25);
-    mainCharacter.gainExp(40);
+    mainCharacter.gainExp(30);
     clearBox("sprites");
     appendImage("main-char", "pixelart character-atk1", "images/Main/main-atk1.png");
 }
 
 function playerRest(){
     mainCharacter.staminaChange(25);
-    mainCharacter.hpChange(10);
+    mainCharacter.hpChange(25);
     remainTime -= 10;
     console.log(remainTime);
     
@@ -160,6 +168,8 @@ function playerSword(){
         appendImage("main-char", "pixelart character-idle", "images/main/main-idle.png");
     }
 }
+
+
 
 function playGame(e){
     let userInput = e.target.id;
