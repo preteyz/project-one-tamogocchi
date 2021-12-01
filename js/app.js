@@ -77,6 +77,9 @@ class characterObj{
 const mainCharacter = new characterObj(100, 100, 50);
 const attackBtn = document.getElementById("attack");
 const advanceBtn = document.getElementById("advance");
+const restBtn = document.getElementById("rest");
+const swordBtn = document.getElementById("sword");
+const gameOver = document.getElementById("game-over");
 const charName = prompt("Player name: ");
 document.getElementById("player-name").innerHTML = charName;
 let remainTime = 120;
@@ -147,7 +150,7 @@ function playerRest(){
     mainCharacter.hpChange(25);
     remainTime -= 10;
     console.log(remainTime);
-    
+
     clearBox("sprites");
     appendImage("main-char", "pixelart character-idle", "images/Main/main-rest.png");
 }
@@ -189,6 +192,7 @@ function playGame(e){
 
 let interval = "";
 
+
 function startIntervals(){
     interval = setInterval(function(){ 
         let count = 0;
@@ -198,11 +202,30 @@ function startIntervals(){
         console.log(remainTime);
         count += 1;
         pageUpdate();
+        // Gameover condition
         if(remainTime <= 0 || mainCharacter.hp <= 0 || mainCharacter.stamina <= 0){
             clearInterval(interval);
-            // document.getElementById("play").setAttribute("display", "none");
+            appendImage("main-char", "pixelart character-dead", "images/main/main-death.png");
+            attackBtn.className = "nes-btn is-disabled";
+            advanceBtn.className = "nes-btn is-disabled";
+            restBtn.className = "nes-btn is-disabled";
+            swordBtn.className = "nes-btn is-disabled";
+            attackBtn.disabled = true;
+            advanceBtn.disabled = true;
+            restBtn.disabled = true;
+            swordBtn.disabled = true;
+
+            const gameOver = document.createElement("img");
+            gameOver.setAttribute("src", "images/game-over.png");
+            gameOver.setAttribute("id", "game-over");
+            gameOver.setAttribute("class", "animate__animated animated__fadeIn");
+            document.getElementById('play').appendChild(gameOver);
+            pageUpdate();
         }
+
+        
     ; }, 1000);
+    
 }
 
 

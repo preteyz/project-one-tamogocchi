@@ -8,11 +8,11 @@
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="js/app.js" defer></script>
 </head>
 <body>
     <div class="game-area">
-        
         <!-- Animated Sprites -->
         <div id="play" class="background">
 
@@ -28,10 +28,10 @@
                 </div>
             </div>
 
-            
+
             <!-- Sprite animations -->
             <div class="character" id="sprites">
-                <img id="main-idle" class="pixelart character-idle"  src="images/Main/main-idle.png" alt="main-character">
+                <img id="main-idle" class="character-idle pixelart"  src="images/Main/main-idle.png" alt="main-character">
                 <!-- <img id="main-idle-unsheath" class="pixelart character-idle"  src="images/Main/main-unsheath.png" alt="main-character">
                 <img id="main-run" class="pixelart character-run"  src="images/Main/main-run.png" alt="main-character">
                 <img id="main-atk1" class="pixelart character-atk1"  src="images/Main/main-atk1.png" alt="main-character"> -->
@@ -54,13 +54,10 @@
                 <h3>Exp: <span id="lvl-percent">0%</span></h3> 
             </div>
             
+            <!-- <img id="game-over" src="images/game-over.png" alt="helo"> -->
+            
 
         </div>
-
-        <div class="gameover">
-            <img id="main-dead" class="pixelart character-dead"  src="images/Main/main-run.png" alt="main-character">
-        </div>
-
 
     </div>
 </body>

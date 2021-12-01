@@ -91,6 +91,7 @@ html, body {
     animation: moveSpritesheet 1s steps(7);
     animation-iteration-count: 1;
     width: calc(350px * var(--pixel-size));
+    animation-fill-mode: forwards;
 }
 
 /* animate */
@@ -117,3 +118,12 @@ h1{
     padding: 1rem;
     margin: 1rem;
 }
+
+#game-over{
+    position: absolute;
+    /* width: 50%; */
+    height: 50%;
+    top: 10%;
+    right: 35%;
+}
+
