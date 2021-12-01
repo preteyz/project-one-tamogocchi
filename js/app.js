@@ -1,26 +1,3 @@
-/*   NOTE..............................
-*    Idea for changing difficulty of the game
-*    NOTE..............................
-*
-* MISSING TIME COMPONENT
-* HP AND STAMINA CAN GO BELOW 0 AND OVER 100
-* NO ENDGAME COMPONENT
-* Battle component of the game can be implemented in future version
-* Add name
-*
-*/
-
-// enemyConstructor(difficulty){
-//     switch(difficulty){
-//         case "easy":
-//             low stats
-//         case "medium":
-//             med stats
-//         case "hard":
-//             high stats
-//     }
-// }
-
 class characterObj{
     exhausted = false;
     isResting = false;
@@ -65,7 +42,6 @@ class characterObj{
         this.exp += amt;
         if (this.exp > this.lvlUp){
             this.level += 1;
-            // this.lvlUp += 20;
             remainTime += 30;
             this.exp = 0;
         }
@@ -94,16 +70,6 @@ function elemUpdate(elemId, stat) {
     } else{
         elem.setAttribute("value", stat);
     }
-    // create a function to increment by changes in each bar by 1%;
-    // var id = setInterval(frame, 1);
-    // function frame() {
-    //     if (width >= barId.value) {
-    //     clearInterval(id);
-    //     } else {
-    //     width++; 
-    //     elem.style.width = width + '%'; 
-    //     }
-    // }
 }
 
 function pageUpdate() {
